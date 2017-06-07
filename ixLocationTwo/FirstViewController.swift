@@ -53,5 +53,17 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate{
         // An error occurred trying to retrieve users location
         print("Error \(error)")
     }
+    
+    func didSaveActivity(activity: Activity) {
+        print(activity)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2DMake(activity.location.lat, activity.location.lng);
+        annotation.title = activity.name
+        map.addAnnotation(annotation)
+    }
+    
+    func didCancelActivity() {
+        
+    }
 }
 

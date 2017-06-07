@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AD714FE5D14F095D743C57CE /* Pods_ixLocationTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23431587EEFA71A1A1B3A3EB /* Pods_ixLocationTwo.framework */; };
+		234A3D1ED4B7952F6984FE15 /* Pods_ixLocationTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 626DB67E24DF3150518CC3FA /* Pods_ixLocationTwo.framework */; };
+		B685C94B1EE6C44200AB8348 /* SettingTablesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B685C94A1EE6C44200AB8348 /* SettingTablesTableViewController.swift */; };
+		B68C22D41EE72E4F00FDB3A2 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C22D31EE72E4F00FDB3A2 /* Activity.swift */; };
+		B68C22D61EE72E7600FDB3A2 /* GeoPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C22D51EE72E7600FDB3A2 /* GeoPoint.swift */; };
+		B68C22D81EE72EA600FDB3A2 /* AddActivityDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C22D71EE72EA500FDB3A2 /* AddActivityDelegate.swift */; };
+		B68C22DA1EE72FCF00FDB3A2 /* AddActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C22D91EE72FCF00FDB3A2 /* AddActivityViewController.swift */; };
+		B68C22DE1EE7447C00FDB3A2 /* ActivityLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C22DD1EE7447C00FDB3A2 /* ActivityLogTableViewController.swift */; };
+		B68C22E21EE7D40F00FDB3A2 /* MapSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C22E11EE7D40F00FDB3A2 /* MapSettingsTableViewController.swift */; };
+		B68C23121EE8201300FDB3A2 /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C23111EE8201300FDB3A2 /* ActivityDetailsViewController.swift */; };
+		B68C23141EE82B6900FDB3A2 /* ProfileChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C23131EE82B6900FDB3A2 /* ProfileChangeViewController.swift */; };
+		B68C23161EE82C1000FDB3A2 /* ProfileChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C23151EE82C1000FDB3A2 /* ProfileChangeDelegate.swift */; };
 		B6ECE4E31EE5423800093CFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE4E21EE5423800093CFC /* AppDelegate.swift */; };
 		B6ECE4E51EE5423800093CFC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE4E41EE5423800093CFC /* FirstViewController.swift */; };
 		B6ECE4E71EE5423800093CFC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE4E61EE5423800093CFC /* SecondViewController.swift */; };
@@ -17,7 +27,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		23431587EEFA71A1A1B3A3EB /* Pods_ixLocationTwo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ixLocationTwo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DE0A61A126EBD0CDF2A465A /* Pods-ixLocationTwo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ixLocationTwo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ixLocationTwo/Pods-ixLocationTwo.debug.xcconfig"; sourceTree = "<group>"; };
+		626DB67E24DF3150518CC3FA /* Pods_ixLocationTwo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ixLocationTwo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A625A1401B0A65FB34D07BF8 /* Pods-ixLocationTwo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ixLocationTwo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ixLocationTwo/Pods-ixLocationTwo.release.xcconfig"; sourceTree = "<group>"; };
+		B685C94A1EE6C44200AB8348 /* SettingTablesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTablesTableViewController.swift; sourceTree = "<group>"; };
+		B68C22D31EE72E4F00FDB3A2 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		B68C22D51EE72E7600FDB3A2 /* GeoPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoPoint.swift; sourceTree = "<group>"; };
+		B68C22D71EE72EA500FDB3A2 /* AddActivityDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityDelegate.swift; sourceTree = "<group>"; };
+		B68C22D91EE72FCF00FDB3A2 /* AddActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityViewController.swift; sourceTree = "<group>"; };
+		B68C22DD1EE7447C00FDB3A2 /* ActivityLogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityLogTableViewController.swift; sourceTree = "<group>"; };
+		B68C22E11EE7D40F00FDB3A2 /* MapSettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSettingsTableViewController.swift; sourceTree = "<group>"; };
+		B68C23111EE8201300FDB3A2 /* ActivityDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDetailsViewController.swift; sourceTree = "<group>"; };
+		B68C23131EE82B6900FDB3A2 /* ProfileChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileChangeViewController.swift; sourceTree = "<group>"; };
+		B68C23151EE82C1000FDB3A2 /* ProfileChangeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileChangeDelegate.swift; sourceTree = "<group>"; };
 		B6ECE4DF1EE5423800093CFC /* ixLocationTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ixLocationTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6ECE4E21EE5423800093CFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6ECE4E41EE5423800093CFC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -26,8 +48,6 @@
 		B6ECE4EB1EE5423800093CFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6ECE4EE1EE5423800093CFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6ECE4F01EE5423800093CFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CF9BCBD29A76159144757AC6 /* Pods-ixLocationTwo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ixLocationTwo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ixLocationTwo/Pods-ixLocationTwo.debug.xcconfig"; sourceTree = "<group>"; };
-		F6AECC3B199A2C83631CD176 /* Pods-ixLocationTwo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ixLocationTwo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ixLocationTwo/Pods-ixLocationTwo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +55,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD714FE5D14F095D743C57CE /* Pods_ixLocationTwo.framework in Frameworks */,
+				234A3D1ED4B7952F6984FE15 /* Pods_ixLocationTwo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		612E86B895E640A4B92CA9D6 /* Frameworks */ = {
+		0C93C2092E69F6C023C9BF44 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				23431587EEFA71A1A1B3A3EB /* Pods_ixLocationTwo.framework */,
+				2DE0A61A126EBD0CDF2A465A /* Pods-ixLocationTwo.debug.xcconfig */,
+				A625A1401B0A65FB34D07BF8 /* Pods-ixLocationTwo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7D184B3A6B9EB8C7FDA9A7FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				626DB67E24DF3150518CC3FA /* Pods_ixLocationTwo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -55,8 +84,8 @@
 			children = (
 				B6ECE4E11EE5423800093CFC /* ixLocationTwo */,
 				B6ECE4E01EE5423800093CFC /* Products */,
-				DE9D2DFBAAB908A7C4FA5DF9 /* Pods */,
-				612E86B895E640A4B92CA9D6 /* Frameworks */,
+				0C93C2092E69F6C023C9BF44 /* Pods */,
+				7D184B3A6B9EB8C7FDA9A7FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,22 +102,23 @@
 			children = (
 				B6ECE4E21EE5423800093CFC /* AppDelegate.swift */,
 				B6ECE4E41EE5423800093CFC /* FirstViewController.swift */,
+				B68C22DD1EE7447C00FDB3A2 /* ActivityLogTableViewController.swift */,
 				B6ECE4E61EE5423800093CFC /* SecondViewController.swift */,
 				B6ECE4E81EE5423800093CFC /* Main.storyboard */,
+				B68C22E11EE7D40F00FDB3A2 /* MapSettingsTableViewController.swift */,
+				B68C22D91EE72FCF00FDB3A2 /* AddActivityViewController.swift */,
+				B68C22D31EE72E4F00FDB3A2 /* Activity.swift */,
+				B68C22D71EE72EA500FDB3A2 /* AddActivityDelegate.swift */,
+				B68C22D51EE72E7600FDB3A2 /* GeoPoint.swift */,
+				B68C23131EE82B6900FDB3A2 /* ProfileChangeViewController.swift */,
+				B685C94A1EE6C44200AB8348 /* SettingTablesTableViewController.swift */,
+				B68C23151EE82C1000FDB3A2 /* ProfileChangeDelegate.swift */,
+				B68C23111EE8201300FDB3A2 /* ActivityDetailsViewController.swift */,
 				B6ECE4EB1EE5423800093CFC /* Assets.xcassets */,
 				B6ECE4ED1EE5423800093CFC /* LaunchScreen.storyboard */,
 				B6ECE4F01EE5423800093CFC /* Info.plist */,
 			);
 			path = ixLocationTwo;
-			sourceTree = "<group>";
-		};
-		DE9D2DFBAAB908A7C4FA5DF9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CF9BCBD29A76159144757AC6 /* Pods-ixLocationTwo.debug.xcconfig */,
-				F6AECC3B199A2C83631CD176 /* Pods-ixLocationTwo.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,9 +245,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B68C22D41EE72E4F00FDB3A2 /* Activity.swift in Sources */,
 				B6ECE4E71EE5423800093CFC /* SecondViewController.swift in Sources */,
+				B68C22DA1EE72FCF00FDB3A2 /* AddActivityViewController.swift in Sources */,
+				B685C94B1EE6C44200AB8348 /* SettingTablesTableViewController.swift in Sources */,
+				B68C23121EE8201300FDB3A2 /* ActivityDetailsViewController.swift in Sources */,
+				B68C23161EE82C1000FDB3A2 /* ProfileChangeDelegate.swift in Sources */,
+				B68C22D61EE72E7600FDB3A2 /* GeoPoint.swift in Sources */,
+				B68C23141EE82B6900FDB3A2 /* ProfileChangeViewController.swift in Sources */,
+				B68C22D81EE72EA600FDB3A2 /* AddActivityDelegate.swift in Sources */,
 				B6ECE4E31EE5423800093CFC /* AppDelegate.swift in Sources */,
+				B68C22E21EE7D40F00FDB3A2 /* MapSettingsTableViewController.swift in Sources */,
 				B6ECE4E51EE5423800093CFC /* FirstViewController.swift in Sources */,
+				B68C22DE1EE7447C00FDB3A2 /* ActivityLogTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +380,7 @@
 		};
 		B6ECE4F41EE5423800093CFC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF9BCBD29A76159144757AC6 /* Pods-ixLocationTwo.debug.xcconfig */;
+			baseConfigurationReference = 2DE0A61A126EBD0CDF2A465A /* Pods-ixLocationTwo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = V2SYTB72GZ;
@@ -354,7 +394,7 @@
 		};
 		B6ECE4F51EE5423800093CFC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6AECC3B199A2C83631CD176 /* Pods-ixLocationTwo.release.xcconfig */;
+			baseConfigurationReference = A625A1401B0A65FB34D07BF8 /* Pods-ixLocationTwo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = V2SYTB72GZ;
@@ -385,6 +425,7 @@
 				B6ECE4F51EE5423800093CFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
