@@ -1,3 +1,4 @@
+
 //
 //  ActivityLogTableViewController.swift
 //  ixLocationTwo
@@ -7,6 +8,8 @@
 //
 
 import UIKit
+import Alamofire
+import Gloss
 
 class ActivityLogTableViewController: UITableViewController, AddActivityDelegate{
 
@@ -14,22 +17,54 @@ class ActivityLogTableViewController: UITableViewController, AddActivityDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let activity1 = Activity()
-        activity1?.name = "act1"
-        activity1?.locationName = "place1"
-        activity1?.date = "date1"
-        
-        activities.append(activity1!)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        activities = []
+        Alamofire.request("https://ixlocationtwo.firebaseio.com/Activity.json").responseJSON { response in
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+                
+                if let response = JSON as? NSDictionary{
+                    
+                    for (_, value) in response {
+                        let activity = Activity()
+                        
+                        if let actDictionary = value as? [String : AnyObject] {
+                            activity?.name = actDictionary["name"] as? String
+                            activity?.locationName = actDictionary["locationName"] as? String
+                            activity?.date = actDictionary["date"] as? String
+                            
+                            if let geoPointDictionary = actDictionary["location"] as? [String: AnyObject] {
+                                let location = GeoPoint()
+                                location.lat = geoPointDictionary["lat"] as? Double
+                                location.lng = geoPointDictionary["lng"] as? Double
+                                activity?.location = location
+                            }
+                        }
+                        
+                        self.activities.append(activity!)
+                    }
+                }
+                self.tableView.reloadData()
+            }
+        }
+
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
 
     // MARK: - Table view data source
@@ -48,12 +83,17 @@ class ActivityLogTableViewController: UITableViewController, AddActivityDelegate
         
         return cell
     }
+    
+    
     func didSaveActivity(activity: Activity){
         activities.append(activity)
         self.tableView.reloadData()
     }
     func didCancelActivity() {
     }
+    
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -72,6 +112,7 @@ class ActivityLogTableViewController: UITableViewController, AddActivityDelegate
         }
         
     }
+ 
 
     
   
