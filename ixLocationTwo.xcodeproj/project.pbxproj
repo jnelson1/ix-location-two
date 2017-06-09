@@ -18,6 +18,7 @@
 		B68C23121EE8201300FDB3A2 /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C23111EE8201300FDB3A2 /* ActivityDetailsViewController.swift */; };
 		B68C23141EE82B6900FDB3A2 /* ProfileChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C23131EE82B6900FDB3A2 /* ProfileChangeViewController.swift */; };
 		B68C23161EE82C1000FDB3A2 /* ProfileChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C23151EE82C1000FDB3A2 /* ProfileChangeDelegate.swift */; };
+		B68C23181EEA8EBA00FDB3A2 /* PinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68C23171EEA8EBA00FDB3A2 /* PinAnnotation.swift */; };
 		B6ECE4E31EE5423800093CFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE4E21EE5423800093CFC /* AppDelegate.swift */; };
 		B6ECE4E51EE5423800093CFC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE4E41EE5423800093CFC /* FirstViewController.swift */; };
 		B6ECE4E71EE5423800093CFC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ECE4E61EE5423800093CFC /* SecondViewController.swift */; };
@@ -40,6 +41,7 @@
 		B68C23111EE8201300FDB3A2 /* ActivityDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDetailsViewController.swift; sourceTree = "<group>"; };
 		B68C23131EE82B6900FDB3A2 /* ProfileChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileChangeViewController.swift; sourceTree = "<group>"; };
 		B68C23151EE82C1000FDB3A2 /* ProfileChangeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileChangeDelegate.swift; sourceTree = "<group>"; };
+		B68C23171EEA8EBA00FDB3A2 /* PinAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinAnnotation.swift; sourceTree = "<group>"; };
 		B6ECE4DF1EE5423800093CFC /* ixLocationTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ixLocationTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6ECE4E21EE5423800093CFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6ECE4E41EE5423800093CFC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				B6ECE4E21EE5423800093CFC /* AppDelegate.swift */,
 				B6ECE4E41EE5423800093CFC /* FirstViewController.swift */,
+				B68C23171EEA8EBA00FDB3A2 /* PinAnnotation.swift */,
 				B68C22DD1EE7447C00FDB3A2 /* ActivityLogTableViewController.swift */,
 				B6ECE4E61EE5423800093CFC /* SecondViewController.swift */,
 				B6ECE4E81EE5423800093CFC /* Main.storyboard */,
@@ -251,6 +254,7 @@
 				B685C94B1EE6C44200AB8348 /* SettingTablesTableViewController.swift in Sources */,
 				B68C23121EE8201300FDB3A2 /* ActivityDetailsViewController.swift in Sources */,
 				B68C23161EE82C1000FDB3A2 /* ProfileChangeDelegate.swift in Sources */,
+				B68C23181EEA8EBA00FDB3A2 /* PinAnnotation.swift in Sources */,
 				B68C22D61EE72E7600FDB3A2 /* GeoPoint.swift in Sources */,
 				B68C23141EE82B6900FDB3A2 /* ProfileChangeViewController.swift in Sources */,
 				B68C22D81EE72EA600FDB3A2 /* AddActivityDelegate.swift in Sources */,

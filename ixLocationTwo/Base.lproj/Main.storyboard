@@ -43,16 +43,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="map" destination="tyk-jq-UUO" id="MHI-5v-fcb"/>
+                        <segue destination="v8Q-AA-EfM" kind="show" identifier="navFromMapToDetail" id="fpf-4x-HO1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1688.8" y="-320.68965517241384"/>
+            <point key="canvasLocation" x="1742" y="-321"/>
         </scene>
         <!--Actvity Details-->
         <scene sceneID="iMw-Rv-gYn">
             <objects>
-                <viewController id="v8Q-AA-EfM" customClass="ActivityDetailsViewController" customModule="ixLocationTwo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="activityDetails" id="v8Q-AA-EfM" customClass="ActivityDetailsViewController" customModule="ixLocationTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tGI-S2-3Q2"/>
                         <viewControllerLayoutGuide type="bottom" id="mU9-oY-aUG"/>
@@ -171,6 +172,9 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d4g-cy-dlM">
                                 <rect key="frame" x="16" y="344" width="343" height="276"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                </accessibility>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ADl-5S-LXw">
                                 <rect key="frame" x="16" y="175" width="343" height="30"/>
@@ -193,6 +197,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6q-N0-Ukk">
+                                <rect key="frame" x="16" y="344" width="343" height="276"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="selectImage:" destination="evc-kp-ibK" eventType="touchUpInside" id="dwb-wm-oqO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -722,6 +734,7 @@
         <image name="settings (1)" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9i9-OT-ndP"/>
+        <segue reference="fpf-4x-HO1"/>
+        <segue reference="fnH-iP-SRA"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -18,11 +18,13 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     var currentUserLocation: CLLocation!
     var activities: [Activity] = []
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
          map.showsUserLocation = true
+        map.delegate=self
  
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -53,10 +55,13 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
                             location.lng = geoPointDictionary["lng"] as? Double
                             activity?.location = location
                             
-                            let annotation = MKPointAnnotation()
-                            annotation.coordinate = CLLocationCoordinate2DMake((activity?.location?.lat!)!, (activity?.location?.lng!)!);
-                            annotation.title = activity?.name
-                            self.map.addAnnotation(annotation)
+                            let annotation = PinAnnotation(activity: activity!)
+                            annotation?.coordinate = CLLocationCoordinate2DMake((activity?.location?.lat!)!, (activity?.location?.lng!)!);
+                            annotation?.title = activity?.name
+                            
+                            
+                            self.map.addAnnotation(annotation!)
+                            
                         }
                     }
                     
@@ -71,11 +76,70 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     override func viewDidAppear(_ animated: Bool) {
         setMapType()
     }
+    /*
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
+        annotationView?.canShowCallout = true
+        let button = UIButton.init(type: UIButtonType.detailDisclosure)
+        annotationView?.rightCalloutAccessoryView = button
+        
+        
+        //button.addTarget(self, action: #selector(self.pinViewTouch(sender:)), for: .touchUpInside)
+ 
+        return annotationView
+    }*/
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView{
+            
+            //performSegue(withIdentifier: "navFromMapToDetail", sender: Any?.self)
+            //Perform a segue here to navigate to another viewcontroller
+            // On tapping the disclosure button you will get here
+            let annotation = view.annotation as? PinAnnotation
+            
+            //let activityDetailsVC = ActivityDetailsViewController()
+            let activityDetailsVC = self.storyboard?.instantiateViewController(withIdentifier: "activityDetails") as? ActivityDetailsViewController
+            activityDetailsVC?.activity = annotation?.activity
+            //self.present(activityDetailsVC!, animated: true, completion: nil)
+            self.navigationController?.pushViewController(activityDetailsVC!, animated: true)
+            
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            //println("Pinview was nil")
+            let annot = annotation as? PinAnnotation
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+        }
+        
+        let button = UIButton(type: .detailDisclosure) as UIButton // button with info sign in it
+        
+        pinView?.rightCalloutAccessoryView = button
+        return pinView
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    /*
+    func pinViewTouch(sender: UIButton?) {
+        performSegue(withIdentifier: "navFromMapToDetail", sender: Any?.self)
+        
+    }
+ */
+    
     func setMapType() {
         /*
          Different map types
@@ -99,7 +163,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             
         }
     }
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let location = locations.last!
@@ -126,7 +189,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         // An error occurred trying to retrieve users location
         print("Error \(error)")
     }
-        }
+   
         
- 
+}
 

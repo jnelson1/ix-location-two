@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Alamofire
 
-class AddActivityViewController: UIViewController, CLLocationManagerDelegate{
+class AddActivityViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate{
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
@@ -80,6 +80,37 @@ class AddActivityViewController: UIViewController, CLLocationManagerDelegate{
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func selectImage(_ sender: Any) {
+        nameTextField.resignFirstResponder()
+        locationTextField.resignFirstResponder()
+        dateTextField.resignFirstResponder()
+
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // The info dictionary may contain multiple representations of the image. You want to use the original.
+        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        
+        // Set image to display the selected image.
+        imageView.image = selectedImage
+        
+        // Dismiss the picker.
+        dismiss(animated: true, completion: nil)
+    }
+    
+
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         // Get the users location from the array of locations
@@ -91,14 +122,6 @@ class AddActivityViewController: UIViewController, CLLocationManagerDelegate{
         // Store reference to the users location in the class instance (self)
         self.currentUserLocation = userLocation
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }
