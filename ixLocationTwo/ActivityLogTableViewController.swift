@@ -10,17 +10,29 @@
 import UIKit
 import Alamofire
 import Gloss
+import Realm
 
-class ActivityLogTableViewController: UITableViewController, AddActivityDelegate{
-
-    var activities: [Activity] = []
+class ActivityLogTableViewController: UITableViewController{
+    //realm
+    var activities: RLMResults<Activity> {
+        get {
+            return Activity.allObjects() as! RLMResults<Activity>
+        }
+    }
+    
+    //firebase
+    //var activities: [Activity] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+        //using firebase
+        /*
         activities = []
+        
         Alamofire.request("https://ixlocationtwo.firebaseio.com/Activity.json").responseJSON { response in
             if let JSON = response.result.value {
                 print("JSON: \(JSON)")
@@ -34,6 +46,8 @@ class ActivityLogTableViewController: UITableViewController, AddActivityDelegate
                             activity?.name = actDictionary["name"] as? String
                             activity?.locationName = actDictionary["locationName"] as? String
                             activity?.date = actDictionary["date"] as? String
+                            //activity?.imageString = actDictionary["imageString"] as? String
+                            activity?.imageString = actDictionary["image"] as? String
                             
                             if let geoPointDictionary = actDictionary["location"] as? [String: AnyObject] {
                                 let location = GeoPoint()
@@ -49,6 +63,7 @@ class ActivityLogTableViewController: UITableViewController, AddActivityDelegate
                 self.tableView.reloadData()
             }
         }
+ */
 
     }
     override func didReceiveMemoryWarning() {
@@ -72,28 +87,31 @@ class ActivityLogTableViewController: UITableViewController, AddActivityDelegate
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count
+        return Int(activities.count)
+        //return activities.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "activity1", for: indexPath)
         
         //configure cell
-        cell.textLabel?.text = activities[indexPath.row].name
-        cell.detailTextLabel?.text = activities[indexPath.row].locationName
+        cell.textLabel?.text = activities[UInt(indexPath.row)].name
+        cell.detailTextLabel?.text = activities[UInt(indexPath.row)].locationName
+        
+        //display image
+        /*
+        let dataDecoded:NSData = NSData(base64Encoded: activities[indexPath.row].imageString!, options: NSData.Base64DecodingOptions(rawValue: 0))!
+        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
+        cell.imageView?.image = decodedimage
+*/
         
         return cell
     }
     
     
-    func didSaveActivity(activity: Activity){
-        activities.append(activity)
-        self.tableView.reloadData()
-    }
-    func didCancelActivity() {
-    }
+
     
     
-    
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -113,7 +131,7 @@ class ActivityLogTableViewController: UITableViewController, AddActivityDelegate
         
     }
  
-
+*/
     
   
     }

@@ -8,17 +8,26 @@
 
 import Foundation
 import Gloss
+import Realm
 
-class GeoPoint: Glossy, Decodable {
+//need to implement Glossy and Decodable for firebase code
+class GeoPoint: RLMObject {
+    //realm
+    dynamic var lat = 0.0
+    dynamic var lng = 0.0
     
+    
+    //firebase
+    /*
     var lat: Double?
     var lng: Double?
-    
+
+
     init() {
         self.lat = 0.0
         self.lng = 0.0
     }
-    
+ 
     init(latitude lat: Double, longitude lng: Double) {
         self.lat = lat
         self.lng = lng
@@ -33,5 +42,7 @@ class GeoPoint: Glossy, Decodable {
         return jsonify([
             "lat" ~~> self.lat, "lng" ~~> self.lng])
     }
+ */
+    
     
 }

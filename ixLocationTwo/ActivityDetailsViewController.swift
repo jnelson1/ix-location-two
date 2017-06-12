@@ -14,6 +14,9 @@ class ActivityDetailsViewController: UIViewController {
     @IBOutlet weak var locationNameLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
     var activity: Activity?
     
     override func viewDidLoad() {
@@ -31,6 +34,11 @@ class ActivityDetailsViewController: UIViewController {
         nameLabel.text = activity?.name
         locationNameLabel.text = activity?.locationName
         dateLabel.text = activity?.date
+        /*
+        let dataDecoded:NSData = NSData(base64Encoded: (activity?.imageString!)!, options: NSData.Base64DecodingOptions(rawValue: 0))!
+        let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
+        imageView?.image = decodedimage*/
+
     }
 
     /*

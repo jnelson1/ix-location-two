@@ -10,19 +10,30 @@ import UIKit
 import MapKit
 import Alamofire
 import Gloss
+import Realm
 
 class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
     
     @IBOutlet weak var map: MKMapView!
     var locationManager: CLLocationManager!
     var currentUserLocation: CLLocation!
-    var activities: [Activity] = []
+    //realm
+    
+    
+
+    //firebase
+    //var activities: [Activity] = []
     
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        /*
+        var activities: RLMResults<Activity> {
+            get {
+                return Activity.allObjects() as! RLMResults<Activity>
+            }
+        }
          map.showsUserLocation = true
         map.delegate=self
  
@@ -35,6 +46,22 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }
+        //realm
+        
+        for i in 0..<activities.count {
+            let activity = activities.object(at: UInt(i))
+            let annotation = PinAnnotation(activity: activity)
+            annotation?.coordinate = CLLocationCoordinate2DMake((activity.location?.lat)!, (activity.location?.lng)!);
+            annotation?.title = activity.name
+            
+            
+            self.map.addAnnotation(annotation!)
+        }
+        
+        */
+        
+        //firebase
+        /*
         Alamofire.request("https://ixlocationtwo.firebaseio.com/Activity.json").responseJSON { response in
             if let JSON = response.result.value {
                 print("JSON: \(JSON)")
@@ -70,11 +97,43 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
                 }
             }
         }
+ */
         setMapType()
 
     }
+    override func viewWillAppear(_ animated: Bool) {
+        var activities: RLMResults<Activity> {
+            get {
+                return Activity.allObjects() as! RLMResults<Activity>
+            }
+        }
+        map.showsUserLocation = true
+        map.delegate=self
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        //locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+        //realm
+        
+        for i in 0..<activities.count {
+            let activity = activities.object(at: UInt(i))
+            let annotation = PinAnnotation(activity: activity)
+            annotation?.coordinate = CLLocationCoordinate2DMake((activity.location?.lat)!, (activity.location?.lng)!);
+            annotation?.title = activity.name
+            
+            
+            self.map.addAnnotation(annotation!)
+        }
+}
     override func viewDidAppear(_ animated: Bool) {
         setMapType()
+        
     }
     /*
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

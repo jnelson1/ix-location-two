@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Alamofire
+import Realm
 
 class AddActivityViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate{
 
@@ -46,24 +47,56 @@ class AddActivityViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func saveActivity(_ sender: Any) {
+        //using realm
+        
+        let act = Activity()
+        act.name = nameTextField.text!
+        act.locationName = locationTextField.text!
+        act.date = dateTextField.text!
+        act.location = GeoPoint()
+        act.location?.lat = currentUserLocation.coordinate.latitude
+        act.location?.lng = currentUserLocation.coordinate.longitude
+        
+        let realm = RLMRealm.default()
+        realm.beginWriteTransaction()
+        realm.add(act)
+        
+        do {
+            try realm.commitWriteTransactionWithoutNotifying([])
+        } catch {
+            print ("Error")
+        }
+        
+        //using firebase
+        /*
         newActivity = Activity()
         newActivity?.name = nameTextField.text!
         newActivity?.locationName = locationTextField.text!
         newActivity?.date = dateTextField.text!
+        
+        //convert image to NSData and then to base64 string
+        let userImage:UIImage = imageView.image!
+        let imageData:NSData = UIImagePNGRepresentation(userImage)! as NSData
+        newActivity?.imageString = imageData.base64EncodedString(options: .lineLength64Characters)
+ 
+        
         newActivity?.location = GeoPoint(latitude: currentUserLocation.coordinate.latitude, longitude: currentUserLocation.coordinate.longitude)
         
         Alamofire.request("https://ixlocationtwo.firebaseio.com/Activity.json", method: .post, parameters: newActivity?.toJSON(), encoding: JSONEncoding.default).responseJSON{
             response in
+            
+            print(response.response)
+            print(response.result)
         
             switch response.result {
             case .success( _):
-                //self.delegate?.didSaveActivity(activity: self.newActivity!)
+                self.delegate?.didSaveActivity(activity: self.newActivity!)
                 self.dismiss(animated: true, completion: nil)
             case .failure: break
             }
         }
-        /*
-        delegate?.didSaveActivity(activity: newActivity!)
+    */
+        
         if (nameTextField.text?.isEmpty)!||(locationTextField.text?.isEmpty)!||(dateTextField.text?.isEmpty)!{
             //throw an error
             print("need to fill both categories")
@@ -71,12 +104,11 @@ class AddActivityViewController: UIViewController, UIImagePickerControllerDelega
         }
         else{
             dismiss(animated: true, completion: nil)
-        }*/
+        }
  
     }
 
     @IBAction func cancelActivity(_ sender: Any) {
-        delegate?.didCancelActivity()
         dismiss(animated: true, completion: nil)
     }
     
