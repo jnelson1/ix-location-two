@@ -8,26 +8,28 @@
 
 import Foundation
 import UIKit
-//import Gloss
-import Realm
+import Gloss
+//import Realm
 
+/*
 class Activity: RLMObject {
     dynamic var name = ""
     dynamic var locationName = ""
     dynamic var date = ""
     dynamic var location: GeoPoint?
 }
-
+*/
 
 //firebase activity
-/*
+
 class Activity: Decodable, Glossy{
     
     var name: String?
     var locationName: String?
     var date: String?
-    var imageString: String?
+    var imageURL: String?
     var location: GeoPoint?
+    var image: UIImage?
     
     
     
@@ -35,15 +37,16 @@ class Activity: Decodable, Glossy{
         self.name = ""
         self.locationName = ""
         self.date=""
-        self.imageString = ""
+        self.imageURL = ""
         self.location = GeoPoint(latitude: 0.0, longitude: 0.0)
+        self.image = nil
     }
     
     required init?(json: JSON) {
         self.name = "name" <~~ json
         self.locationName = "locationName" <~~ json
         self.date = "date" <~~ json
-        self.imageString = "imageString" <~~ json
+        self.imageURL = "imageURL" <~~ json
         self.location = "location" <~~ json
     }
     
@@ -52,11 +55,11 @@ class Activity: Decodable, Glossy{
             "name" ~~> self.name,
             "locationName" ~~> self.locationName,
             "date" ~~> self.date,
-            "imageString" ~~> self.imageString,
+            "imageURL" ~~> self.imageURL,
             "location" ~~> self.location
             ])
     }
  
     
 }
- */
+ 

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Alamofire
+import FirebaseStorage
+
 
 class ActivityDetailsViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,6 +24,20 @@ class ActivityDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let storageRef = Storage.storage().reference()
+        if let imageName = activity?.name {
+            let imagesRef = storageRef.child("images/\(imageName).jpg")
+            imagesRef.getData(maxSize: 10 * 1024 * 1024, completion: {(data, error) in
+                if let error = error {
+                    // Uh-oh, an error occurred!
+                    print(error.localizedDescription)
+                } else {
+                    // Data for "images/island.jpg" is returned
+                    self.activity?.image = UIImage(data: data!)
+                }
+                
+            })
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -34,11 +51,15 @@ class ActivityDetailsViewController: UIViewController {
         nameLabel.text = activity?.name
         locationNameLabel.text = activity?.locationName
         dateLabel.text = activity?.date
+        imageView.image = activity?.image
+        
+
         /*
         let dataDecoded:NSData = NSData(base64Encoded: (activity?.imageString!)!, options: NSData.Base64DecodingOptions(rawValue: 0))!
         let decodedimage:UIImage = UIImage(data: dataDecoded as Data)!
         imageView?.image = decodedimage*/
 
+    }
     }
 
     /*
@@ -51,4 +72,4 @@ class ActivityDetailsViewController: UIViewController {
     }
     */
 
-}
+

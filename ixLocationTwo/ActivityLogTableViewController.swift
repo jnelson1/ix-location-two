@@ -10,60 +10,80 @@
 import UIKit
 import Alamofire
 import Gloss
-import Realm
+import FirebaseStorage
+//import Realm
 
 class ActivityLogTableViewController: UITableViewController{
     //realm
+    /*
     var activities: RLMResults<Activity> {
         get {
             return Activity.allObjects() as! RLMResults<Activity>
         }
     }
-    
+    */
     //firebase
-    //var activities: [Activity] = []
+    var activities: [Activity] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
-        //using firebase
-        /*
-        activities = []
-        
+    override func viewDidAppear(_ animated: Bool) {
+        self.activities = []
         Alamofire.request("https://ixlocationtwo.firebaseio.com/Activity.json").responseJSON { response in
             if let JSON = response.result.value {
                 print("JSON: \(JSON)")
                 
-                if let response = JSON as? NSDictionary{
+                let response = JSON as? NSDictionary
+                
+                for (key, value) in response! {
+                    let activity = Activity()
                     
-                    for (_, value) in response {
-                        let activity = Activity()
+                    if let actDictionary = value as? [String : AnyObject] {
+                        activity?.name = actDictionary["name"] as? String
+                        activity?.locationName = actDictionary["locationName"] as? String
+                        activity?.date = actDictionary["date"] as? String
                         
-                        if let actDictionary = value as? [String : AnyObject] {
-                            activity?.name = actDictionary["name"] as? String
-                            activity?.locationName = actDictionary["locationName"] as? String
-                            activity?.date = actDictionary["date"] as? String
-                            //activity?.imageString = actDictionary["imageString"] as? String
-                            activity?.imageString = actDictionary["image"] as? String
-                            
-                            if let geoPointDictionary = actDictionary["location"] as? [String: AnyObject] {
-                                let location = GeoPoint()
-                                location.lat = geoPointDictionary["lat"] as? Double
-                                location.lng = geoPointDictionary["lng"] as? Double
-                                activity?.location = location
-                            }
+                        if let geoPointDictionary = actDictionary["location"] as? [String: AnyObject] {
+                            let location = GeoPoint()
+                            location.lat = geoPointDictionary["lat"] as? Double
+                            location.lng = geoPointDictionary["lng"] as? Double
+                            activity?.location = location
                         }
-                        
-                        self.activities.append(activity!)
                     }
+                    
+                    self.activities.append(activity!)
+                    
                 }
                 self.tableView.reloadData()
+                for activity in self.activities {
+                    
+                    let storageRef = Storage.storage().reference()
+                    if let imageName = activity.name {
+                        let imagesRef = storageRef.child("images/\(imageName).jpg")
+                    
+                    imagesRef.getData(maxSize: 10 * 1024 * 1024, completion: {(data, error) in
+                        
+                        if let error = error {
+                            // Uh-oh, an error occurred!
+                            print(error.localizedDescription)
+                        } else {
+                            // Data for "images/island.jpg" is returned
+                            activity.image = UIImage(data: data!)
+
+                            self.tableView.reloadData()
+                        }
+                        
+                    })
+                    
+                }
+                
             }
         }
- */
+        }
 
     }
     override func didReceiveMemoryWarning() {
@@ -87,16 +107,18 @@ class ActivityLogTableViewController: UITableViewController{
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Int(activities.count)
-        //return activities.count
+        //return Int(activities.count)
+        return activities.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "activity1", for: indexPath)
         
         //configure cell
-        cell.textLabel?.text = activities[UInt(indexPath.row)].name
-        cell.detailTextLabel?.text = activities[UInt(indexPath.row)].locationName
-        
+        cell.textLabel?.text = activities[(indexPath.row)].name
+        cell.detailTextLabel?.text = activities[(indexPath.row)].locationName
+        if let image = activities[indexPath.row].image {
+            cell.imageView?.image = image
+        }
         //display image
         /*
         let dataDecoded:NSData = NSData(base64Encoded: activities[indexPath.row].imageString!, options: NSData.Base64DecodingOptions(rawValue: 0))!
@@ -111,7 +133,7 @@ class ActivityLogTableViewController: UITableViewController{
 
     
     
-    /*
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -122,16 +144,9 @@ class ActivityLogTableViewController: UITableViewController{
             
             activityDetailsViewController.activity = activities[(indexPath?.row)!]
         }
-        if segue.identifier=="navToAddActivity"{
-            let navigationViewController = segue.destination as! UINavigationController
-            let addActivityViewController = navigationViewController.topViewController as! AddActivityViewController
-            
-            addActivityViewController.delegate = self
-        }
-        
     }
  
-*/
+
     
   
     }

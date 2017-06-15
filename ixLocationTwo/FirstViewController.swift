@@ -11,6 +11,7 @@ import MapKit
 import Alamofire
 import Gloss
 import Realm
+import FirebaseStorage
 
 class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
     
@@ -22,7 +23,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     
 
     //firebase
-    //var activities: [Activity] = []
+    var activities: [Activity] = []
     
 
     
@@ -34,6 +35,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
                 return Activity.allObjects() as! RLMResults<Activity>
             }
         }
+ */
          map.showsUserLocation = true
         map.delegate=self
  
@@ -47,7 +49,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             locationManager.startUpdatingLocation()
         }
         //realm
-        
+        /*
         for i in 0..<activities.count {
             let activity = activities.object(at: UInt(i))
             let annotation = PinAnnotation(activity: activity)
@@ -57,11 +59,11 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             
             self.map.addAnnotation(annotation!)
         }
-        
         */
+ 
         
         //firebase
-        /*
+        
         Alamofire.request("https://ixlocationtwo.firebaseio.com/Activity.json").responseJSON { response in
             if let JSON = response.result.value {
                 print("JSON: \(JSON)")
@@ -82,6 +84,24 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
                             location.lng = geoPointDictionary["lng"] as? Double
                             activity?.location = location
                             
+                            let storageRef = Storage.storage().reference()
+                            if let imageName = activity?.name {
+                                let imagesRef = storageRef.child("images/\(imageName).jpg")
+
+                            imagesRef.getData(maxSize: 10 * 1024 * 1024, completion: {(data, error) in
+                                
+                                if let error = error {
+                                    // Uh-oh, an error occurred!
+                                    print(error.localizedDescription)
+                                } else {
+                                    // Data for "images/island.jpg" is returned
+                                    activity?.image = UIImage(data: data!)
+                                    
+                                }
+                                
+                            })
+
+                            
                             let annotation = PinAnnotation(activity: activity!)
                             annotation?.coordinate = CLLocationCoordinate2DMake((activity?.location?.lat!)!, (activity?.location?.lng!)!);
                             annotation?.title = activity?.name
@@ -97,16 +117,21 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
                 }
             }
         }
- */
+        }
         setMapType()
 
     }
+    
+    /*
     override func viewWillAppear(_ animated: Bool) {
+        //realm
+        
         var activities: RLMResults<Activity> {
             get {
                 return Activity.allObjects() as! RLMResults<Activity>
             }
         }
+ 
         map.showsUserLocation = true
         map.delegate=self
         
@@ -127,16 +152,19 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             annotation?.coordinate = CLLocationCoordinate2DMake((activity.location?.lat)!, (activity.location?.lng)!);
             annotation?.title = activity.name
             
-            
+ 
             self.map.addAnnotation(annotation!)
+ 
         }
+ 
 }
+ */
     override func viewDidAppear(_ animated: Bool) {
         setMapType()
         
     }
-    /*
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+
+    /*func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
         annotationView?.canShowCallout = true
         let button = UIButton.init(type: UIButtonType.detailDisclosure)
@@ -250,5 +278,5 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     }
    
         
-}
 
+}
